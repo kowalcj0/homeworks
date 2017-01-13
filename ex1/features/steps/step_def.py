@@ -7,15 +7,17 @@ from behave import then
 
 from step_impl import every_existing_owner_should_have_valid_profile_image_link
 from step_impl import every_existing_owner_should_have_valid_profile_link
-from step_impl import every_non_existing_owner_should_not_have_profile_link
 from step_impl import every_non_existing_owner_should_not_have_profile_image_link
+from step_impl import every_non_existing_owner_should_not_have_profile_link
 from step_impl import get_activity_feed
 from step_impl import items_should_contain_array_of_tags
 from step_impl import items_should_contain_owner_object
 from step_impl import items_should_contain_required_values
 from step_impl import response_contains_array_named
 from step_impl import response_contains_meta_data
+from step_impl import save_tags
 from step_impl import stack_exchange_is_reachable
+from step_impl import tags_list_shoul_have_no_duplicates
 
 
 @given('that Stack Exchange API is reachable')
@@ -71,3 +73,13 @@ def step_every_existing_owner_should_have_valid_profile_image_link(context):
 @then('every non-existing owner should not have a valid profile image link')
 def step_every_non_existing_owner_should_not_have_valid_profile_image_link(context):
     every_non_existing_owner_should_not_have_profile_image_link(context)
+
+
+@when('we save the tags from the response to a list and remove the duplicates')
+def step_save_tags(context):
+    save_tags(context)
+
+
+@then('we should have a list of tags without duplicates')
+def step_tags_list_shoul_have_no_duplicates(context):
+    tags_list_shoul_have_no_duplicates(context)
