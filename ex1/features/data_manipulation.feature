@@ -4,10 +4,14 @@ Feature: Response data manipulation
         Given that Stack Exchange API is reachable
 
 
+    @duplicates
+    @list
+    @manipulation
     Scenario: Retrieve all tags and save them to a list (duplicates should be removed
         When we get the activity feed for the term "perl"
+        And we save the tags from the response to a list and remove the duplicates
 
-        Then save them to a list and remove the duplicates
+        Then we should have a list of tags without duplicates
 
 
     Scenario: Compare 2 JSON structures except for title and last_activity_date values
