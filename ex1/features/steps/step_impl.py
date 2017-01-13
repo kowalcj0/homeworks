@@ -198,6 +198,10 @@ def every_non_existing_owner_should_not_have_profile_image_link(context):
 
 
 def save_tags(context):
+    """Save all the tags from the response to a list and remove the duplicates.
+
+    :param context: Behave context object.
+    """
     items = context.response.json()['items']
     tags = set()
     for item in items:
@@ -207,21 +211,39 @@ def save_tags(context):
     logging.debug('Saved all tags in context.tags:\n%s', pformat(sorted(context.tags)))
 
 
-def tags_list_shoul_have_no_duplicates(context):
+def tags_list_should_have_no_duplicates(context):
+    """Ensure that we have a list of tags without duplicates.
+
+    :param context: Behave context object.
+    """
     assert context.tags
+    # converting a list to a set will remove all the duplicates
+    # then we need to:
+    # * convert it back to a list
+    # * sort both lists
+    # and finally compare both lists
     unique_tags = list(set(context.tags))
-    assert context.tags == context.tags
+    assert sorted(context.tags) == sorted(unique_tags)
     logging.debug(
         'Saved list of all tags does not contain duplicates:\n%s',
         pformat(sorted(context.tags)))
 
 
 def copy_response(context):
+    """Save a copy of the response JSON in context.response_copy
+
+    :param context: Behave context object.
+    """
     context.response_copy = context.response.json()
     logging.debug('Successfully copied the response')
 
 
 def remove_field_from_every_item_in_response_copy(context, name):
+    """Remove selected field from all items created by existing owners.
+
+    :param context: Behave context object.
+    :param name: name of the field to be deleted.
+    """
     items = context.response_copy['items']
     for item in items:
         print(item)
@@ -241,6 +263,14 @@ def remove_field_from_every_item_in_response_copy(context, name):
 
 
 def replace_field_value_in_every_item_in_response_copy(context, name, value):
+    """Replace value of selected field in all items with provided value.
+
+    It will skip items created by non-existing owners. 
+
+    :param context: Behave context object.
+    :param name: name of the field.
+    :param value: new value of the field.
+    """
     items = context.response_copy['items']
     for item in items:
         print(item)
@@ -260,6 +290,10 @@ def replace_field_value_in_every_item_in_response_copy(context, name, value):
 
 
 def compare_original_response_with_copy(context):
+    """Compare original JSON with its modified copy.
+
+    :param context: Behave context object.
+    """
     original = context.response.json()
     copy = context.response_copy
 

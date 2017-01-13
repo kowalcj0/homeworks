@@ -21,7 +21,7 @@ from step_impl import response_contains_array_named
 from step_impl import response_contains_meta_data
 from step_impl import save_tags
 from step_impl import stack_exchange_is_reachable
-from step_impl import tags_list_shoul_have_no_duplicates
+from step_impl import tags_list_should_have_no_duplicates
 
 @given('that Stack Exchange API is reachable')
 def step_stack_exchange_is_reachable(context):
@@ -85,7 +85,7 @@ def step_save_tags(context):
 
 @then('we should have a list of tags without duplicates')
 def step_tags_list_shoul_have_no_duplicates(context):
-    tags_list_shoul_have_no_duplicates(context)
+    tags_list_should_have_no_duplicates(context)
 
 
 @when('we create a copy of the response')
@@ -101,6 +101,7 @@ def step_replace_field_value_in_every_item_in_response_copy(context, name, value
 @when('we remove the field "{name}" from every item of the response copy')
 def step_remove_field_from_every_item_in_response_copy(context, name):
     remove_field_from_every_item_in_response_copy(context, name)
+
 
 @then('the original response and the copy should be identical except for title and last_activity_date values')
 def step_compare_original_response_with_copy(context):
