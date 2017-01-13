@@ -195,3 +195,22 @@ def every_non_existing_owner_should_not_have_profile_image_link(context):
         logging.debug(
             'Not existing Owner %s does not have a valid profile image link',
             owner['display_name']) 
+
+
+def save_tags(context):
+    items = context.response.json()['items']
+    tags = set()
+    for item in items:
+        for tag in item['tags']:
+            tags.add(tag)
+    context.tags = list(tags)
+    logging.debug('Saved all tags in context.tags:\n%s', pformat(sorted(context.tags)))
+
+
+def tags_list_shoul_have_no_duplicates(context):
+    assert context.tags
+    unique_tags = list(set(context.tags))
+    assert context.tags == context.tags
+    logging.debug(
+        'Saved list of all tags does not contain duplicates:\n%s',
+        pformat(sorted(context.tags)))
