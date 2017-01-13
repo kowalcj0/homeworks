@@ -214,3 +214,86 @@ def tags_list_shoul_have_no_duplicates(context):
     logging.debug(
         'Saved list of all tags does not contain duplicates:\n%s',
         pformat(sorted(context.tags)))
+
+
+def copy_response(context):
+    context.response_copy = context.response.json()
+    logging.debug('Successfully copied the response')
+
+
+def remove_field_from_every_item_in_response_copy(context, name):
+    items = context.response_copy['items']
+    for item in items:
+        print(item)
+        if item['owner']['user_type'] == 'does_not_exist':
+            continue
+        if name in item:
+            del(item[name])
+            logging.debug(
+                'Successfully removed field "%s" from item: %s', name,
+                item['question_id']) 
+        else:
+            logging.debug(
+                'Item %s does not contain field "%s', name, item) 
+    logging.debug(
+        'Response copy after removing "%s" field:\n%s', name,
+        pformat(context.response_copy))
+
+
+def replace_field_value_in_every_item_in_response_copy(context, name, value):
+    items = context.response_copy['items']
+    for item in items:
+        print(item)
+        if item['owner']['user_type'] == 'does_not_exist':
+            continue
+        if name in item:
+            item[name] = value
+            logging.debug(
+                'Successfully replaced value of field "%s" in item: %s with %s',
+                name, item['question_id'], value) 
+        else:
+            logging.debug(
+                'Item %s does not contain field "%s', name, item) 
+    logging.debug(
+        'Response copy after replacing values of all "%s" fields with %s:\n%s',
+        name, value, pformat(context.response_copy))
+
+
+def compare_original_response_with_copy(context):
+    original = context.response.json()
+    copy = context.response_copy
+
+    def compare_top_level_values():
+        # get the list of fields that are JSON values not arrays
+        keys = [val for val in original.iterkeys() if not isinstance(original[val], (dict, list, set))]
+        assert keys, ('Expected at least 1 field key to compare but got none!')
+        logging.debug('List of top tier field keys to compare: %s', keys)
+        for key in keys:
+            assert original[key] == copy[key]
+        logging.debug(
+            'All top level fields in the response copy have the same values as'
+            ' in the original response. Here is a list of compared fields:\n%s',
+            ', '.join(keys))
+
+    def compare_items():
+        original_items = original['items']
+        copy_items = copy['items']
+        skip = ['title', 'last_activity_date']
+        for original_item in original_items:
+            # get all item field keys
+            keys = [val for val in original_item.iterkeys()]
+            # remove the keys that need to be skipped
+            keys = [x for x in keys if x not in skip]
+            for copy_item in copy_items:
+                # find matching items
+                if original_item['question_id'] == copy_item['question_id']:
+                    # compare original an copied items
+                    for key in keys:
+                        assert original_item[key] == copy_item[key]
+                    logging.debug(
+                        'All fields in the copied item ID: %s'
+                        ' have the same values as in in the original items',
+                        copy_item['question_id'])
+
+    compare_top_level_values()
+    compare_items()
