@@ -55,10 +55,30 @@ Once you have `virtualenv` ready to go, we can then install the dependencies:
 (ex1) jk@comp: $ pip install -r requirements.txt
 ```
 
-# Running tests
+# Running test scenarios
 
-To run all tests simply run `behave` command:
+To run all test scenarios simply run `behave` command:
 
 ```bash
 (ex1) jk@comp: $ behave
 ```
+
+If you'd like to run scenarios that are tagged with a specific tag, then use:
+```bash
+(ex1) jk@comp: $ behave -k -t api
+(ex1) jk@comp: $ behave -k -t bdd
+(ex1) jk@comp: $ behave -k -t structure
+```
+
+Tagging scenarios gives you a lot of flexibility in terms of creating custom
+test plans or running tests in parallel etc.
+
+
+Here's a screencast showing:
+* the process of creating a virtualenv
+* installing dependencies
+* running all test scenarios
+* viewing JUnit compatible XML report file and behave log file
+* running tests selectively by providing specific tag
+ 
+[![asciicast](https://asciinema.org/a/51gq93sdnad57m7l3k0qp1dxv.png)](https://asciinema.org/a/51gq93sdnad57m7l3k0qp1dxv)
