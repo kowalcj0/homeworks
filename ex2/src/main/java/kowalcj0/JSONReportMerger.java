@@ -1,4 +1,4 @@
-package cucumber.jvm.parallel;
+package kowalcj0;
 
 import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;

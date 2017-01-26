@@ -1,12 +1,18 @@
-@functional_test
-@other_meta_tag
+@functional
+@blok_ekipa
 Feature: Users can search for Blok Ekipa
 
-  Scenario Outline: Open various websites
-    Given I am on <URL>
-    When I search for element <element_id>
-    Then I should see this element
+  Scenario Outline: Users can go to Blok Ekipa's page through search results
+    Given I am on the home page
+
+    When I search for <keywords>
+    And I go to the <keywords> result in the Programy section
+
+    Then I should be on the <key words>'s page
+    And Facebook like button should be visible
+    And comedy central, mtv, viva and nickelodeon logos should be visible in the page footer
 
   Examples:
-    | URL                         | element_id  |
-    | http://www.comedycentral.pl | query       |
+    | keywords    |
+    | blok ekipa  |
+

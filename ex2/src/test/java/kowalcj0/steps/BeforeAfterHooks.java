@@ -1,13 +1,14 @@
-package cucumber.examples.java.testNG.stepDefinitions;
+package kowalcj0.steps;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import cucumber.examples.java.testNG.DriverManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriverException;
+
+import kowalcj0.DriverManager;
 
 /**
  * Based on SharedDriver.java taken from cucumber-jvm/examples/java-webbit-websockets-selenium

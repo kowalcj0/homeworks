@@ -1,4 +1,4 @@
-package cucumber.jvm.parallel;
+package kowalcj0;
 
 import org.apache.commons.io.FileUtils;
 import java.io.*;

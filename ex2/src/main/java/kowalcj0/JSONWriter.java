@@ -1,4 +1,4 @@
-package cucumber.jvm.parallel;
+package kowalcj0;
 
 import java.io.StringWriter;
 

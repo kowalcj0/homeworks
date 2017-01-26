@@ -1,4 +1,4 @@
-package cucumber.examples.java.testNG;
+package kowalcj0;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;

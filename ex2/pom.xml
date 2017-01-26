@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>info.cukes</groupId>
+    <groupId>kowalcj0</groupId>
     <artifactId>cucumber-testng-parallel-selenium</artifactId>
     <packaging>jar</packaging>
     <name>Example Java TestNG Cucumber parallel test executor</name>
@@ -94,7 +94,7 @@
                                 </goals>
                                 <configuration>
                                     <classpathScope>test</classpathScope>
-                                    <mainClass>cucumber.jvm.parallel.JSReportMerger</mainClass>
+                                    <mainClass>kowalcj0.JSReportMerger</mainClass>
                                     <arguments>
                                         <argument>target/cucumber-report/</argument>
                                     </arguments>
@@ -108,7 +108,7 @@
                                 </goals>
                                 <configuration>
                                     <classpathScope>test</classpathScope>
-                                    <mainClass>cucumber.jvm.parallel.JSONReportMerger</mainClass>
+                                    <mainClass>kowalcj0.JSONReportMerger</mainClass>
                                     <arguments>
                                         <argument>target/cucumber-report/</argument>
                                     </arguments>
@@ -177,21 +177,7 @@
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>${org.codehaus.mojo.exec-maven-plugin.version}</version>
-                        <executions><!--
-                            <execution>
-                                <id>merge-cucumber-js-reports</id>
-                                <phase>post-integration-test</phase>
-                                <goals>
-                                    <goal>java</goal>
-                                </goals>
-                                <configuration>
-                                    <classpathScope>test</classpathScope>
-                                    <mainClass>cucumber.jvm.parallel.JSReportMerger</mainClass>
-                                    <arguments>
-                                        <argument>target/cucumber-report/</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>-->
+                        <executions>
                             <execution>
                                 <id>merge-cucumber-json-reports</id>
                                 <phase>post-integration-test</phase>
@@ -200,7 +186,7 @@
                                 </goals>
                                 <configuration>
                                     <classpathScope>test</classpathScope>
-                                    <mainClass>cucumber.jvm.parallel.JSONReportMerger</mainClass>
+                                    <mainClass>kowalcj0.JSONReportMerger</mainClass>
                                     <arguments>
                                         <argument>target/cucumber-report/</argument>
                                     </arguments>

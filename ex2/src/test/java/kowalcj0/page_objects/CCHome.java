@@ -1,4 +1,6 @@
-package cucumber.examples.java.testNG.page_objects;
+package kowalcj0.page_objects;
+
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -6,15 +8,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
-
 /**
  * Created by JK on 25/01/17.
  */
 public class CCHome {
 
     private By search_box = By.id("query");
-    private By search_results = By.cssSelector("search_results");
+    private By search_results = By.className("search_results");
+    private By programs = By.cssSelector("div.search_results > div:nth-child(1) > ul > li > a");
     private WebDriver driver;
     private WebDriverWait wait;
 
@@ -29,13 +30,20 @@ public class CCHome {
     }
 
     public void searchFor(String keywords){
-        this.driver.findElement(search_box).clear();
-        this.driver.findElement(search_box).sendKeys(keywords);
-        this.driver.findElement(search_box).submit();
+        WebElement se = driver.findElement(search_box);
+        se.clear();
+        se.sendKeys(keywords);
         this.wait.until(ExpectedConditions.visibilityOfElementLocated(search_results));
     }
 
-    public List<WebElement> getTheSearchResults() {
-        return this.driver.findElements(search_results);
+    public void goToProgram(String keywords) {
+        List<WebElement> links = driver.findElements(programs);
+        for(WebElement link : links) {
+            WebElement hdr = link.findElement(By.cssSelector("h3"));
+            if (hdr.getText().toLowerCase().equals(keywords.toLowerCase())) {
+                link.click();
+            }
+        }
     }
+
 }

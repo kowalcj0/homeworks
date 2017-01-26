@@ -1,4 +1,4 @@
-package cucumber.examples.java.testNG;
+package kowalcj0;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
