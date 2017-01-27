@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by JK on 25/01/17.
  */
-public class CCHome {
+public class Home {
 
     private By search_box = By.id("query");
     private By search_results = By.className("search_results");
@@ -19,7 +19,7 @@ public class CCHome {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public CCHome(WebDriver driver) {
+    public Home(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(this.driver, 10);
     }

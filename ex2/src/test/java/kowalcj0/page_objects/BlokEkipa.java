@@ -14,10 +14,10 @@ import static org.junit.Assert.assertThat;
 /**
  * Created by JK on 25/01/17.
  */
-public class BlokEkipaHome {
+public class BlokEkipa {
 
     private By search_box = By.id("query");
-    private By title = By.cssSelector("title");
+    private By title = By.className("title");
     private By facebook_like = By.id("u_0_1");
 
     private By logo_comedycentral = By.cssSelector("#comedycentral > a");
@@ -28,7 +28,7 @@ public class BlokEkipaHome {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public BlokEkipaHome(WebDriver driver) {
+    public BlokEkipa(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(this.driver, 10);
     }
@@ -37,7 +37,7 @@ public class BlokEkipaHome {
         this.driver.get("http://www.comedycentral.pl/programy/2699-blok-ekipa");
         WebElement webElement = driver.findElement(title);
         this.wait.until(ExpectedConditions.visibilityOf(webElement));
-        assertThat("Element is not visible!!!", webElement.isDisplayed(), is(true));
+        assertThat("Element is not visible!!!", webElement.getText().toLowerCase(), is("blok ekipa"));
     }
 
     public void checkIfAllImportantElementAreVisible() {

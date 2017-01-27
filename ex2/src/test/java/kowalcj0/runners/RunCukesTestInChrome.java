@@ -11,6 +11,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
  */
 @CucumberOptions(
         features = "target/test-classes/features",
+//        tags = {"@bug"},
         glue = {"kowalcj0.steps"},
         format = {"pretty",
                 "html:target/cucumber-report/chrome",
