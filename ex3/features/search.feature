@@ -20,7 +20,7 @@ Feature: Document Search
 
 
     @search
-    @<contentype>
+    @<contenttype>
     @content-type
     Scenario Outline: Users should be able to do a full text search for a document of a specific type
         When an unauthenticated user searches for "<contenttype>" with "<keywords>"
@@ -79,7 +79,7 @@ Feature: Document Search
     @wip
     @csv
     @search
-    @<contentype>
+    @<contenttype>
     @content-type
     Scenario Outline: The response should be a valid CSV
         When an unauthenticated user searches for "<contenttype>" with "<keywords>"
